@@ -105,9 +105,10 @@ function HeaderFixed({ onToggleSidebar }) {
 }
 
 function SidebarFixed({ sidebarOpen }) {
+  // If sidebarOpen is false, collapse to icons-only (width 20, hide labels)
   return (
-    <div className={`fixed top-14 left-0 h-[calc(100vh-56px)] w-64 z-30 bg-transparent ${sidebarOpen ? 'block' : 'hidden'} md:block`}>
-      <Sidebar />
+    <div className={`fixed top-14 left-0 h-[calc(100vh-56px)] ${sidebarOpen ? 'w-64' : 'w-20'} z-30 bg-transparent md:block`}>
+      <Sidebar collapsed={!sidebarOpen} />
     </div>
   );
 }

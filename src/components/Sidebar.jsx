@@ -10,15 +10,15 @@ const items = [
   { label: 'Profile', icon: <UserIcon /> },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ collapsed }) {
   return (
-  <aside className="hidden md:flex flex-col w-64 min-h-screen bg-gray-100 dark:bg-[#111111] border-r border-gray-200 dark:border-gray-900 py-6 px-4">
-      <div className="mb-8 text-2xl font-bold text-[#0bb6bc] dark:text-[#0bb6bc]">PowerHub</div>
+    <aside className={`hidden md:flex flex-col min-h-screen bg-gray-100 dark:bg-[#111111] border-r border-gray-200 dark:border-gray-900 py-6 ${collapsed ? 'w-20 px-2' : 'w-64 px-4'}`}>
+  <div className={`mb-8 font-bold text-[#0bb6bc] dark:text-[#0bb6bc] ${collapsed ? 'text-lg text-center' : 'text-2xl'}`}>{collapsed ? 'P' : 'PowerHub'}</div>
       <nav className="flex flex-col gap-4">
         {items.map((item) => (
-          <button key={item.label} className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-900 transition">
+          <button key={item.label} className={`flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-900 transition ${collapsed ? 'justify-center' : ''}`}>
             <span className="w-6 h-6">{item.icon}</span>
-            <span>{item.label}</span>
+            {!collapsed && <span>{item.label}</span>}
           </button>
         ))}
       </nav>
