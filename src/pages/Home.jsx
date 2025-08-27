@@ -76,8 +76,8 @@ export default function Home() {
                       <div className="flex items-start gap-3 mb-1">
                         <img src={video.profile} alt={video.author} className="w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-700 flex-shrink-0" />
                         <div className="flex flex-col">
-                          <h3 className="font-bold text-xl text-[#c42152] dark:text-[#c42152] truncate max-w-[220px]" title={video.title}>{video.title}</h3>
-                          <span className="text-xs font-medium text-gray-800 dark:text-gray-200 mt-1">{video.author}</span>
+                          <h3 className="font-bold text-xl text-white truncate max-w-[220px]" title={video.title}>{video.title}</h3>
+                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">{video.author}</span>
                         </div>
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400 mb-1 pl-14">

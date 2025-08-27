@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { HomeIcon, FireIcon, AcademicCapIcon, VideoCameraIcon, UserIcon } from './icons';
+import { HomeIcon, FireIcon, AcademicCapIcon, VideoCameraIcon, UserIcon, BookmarkIcon, HeartIcon, PlayCircleIcon, ClockIcon } from './icons';
 
 const items = [
   { label: 'Home', icon: <HomeIcon /> },
   { label: 'Trending', icon: <FireIcon /> },
   { label: 'Specializations', icon: <AcademicCapIcon /> },
   { label: 'My Videos', icon: <VideoCameraIcon /> },
+  { label: 'Saved Videos', icon: <BookmarkIcon /> },
+  { label: 'Liked Videos', icon: <HeartIcon /> },
+  { label: 'Course Videos', icon: <PlayCircleIcon /> },
+  { label: 'Watch History', icon: <ClockIcon /> },
   { label: 'Profile', icon: <UserIcon /> },
 ];
 
