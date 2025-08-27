@@ -34,10 +34,9 @@ export default function Filters() {
         ))}
       </div>
       <style>{`
-        .filters-scroll::-webkit-scrollbar { display: none; }
-        @media (max-width: 768px) {
-          .filters-scroll { overflow-x: auto !important; }
-        }
+        /* Hide scrollbars for filters */
+        div::-webkit-scrollbar { display: none !important; }
+        div { scrollbar-width: none !important; }
       `}</style>
     </div>
   );

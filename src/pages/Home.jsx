@@ -45,9 +45,9 @@ export default function Home() {
   }, []);
 
   return (
-  <div className="min-h-screen bg-gray-100 dark:bg-[#111111] w-full" style={{ overflowX: 'hidden' }}>
+  <div className="min-h-screen bg-gray-100 dark:bg-[#111111] w-full" style={{ overflowX: 'hidden', scrollbarWidth: 'none' }}>
       <HeaderFixed onToggleSidebar={handleToggleSidebar} />
-  <div className="flex flex-row w-full" style={{ height: 'calc(100vh - 56px)', maxWidth: '100vw', overflowX: 'hidden' }}>
+  <div className="flex flex-row w-full" style={{ height: 'calc(100vh - 56px)', maxWidth: '100vw', overflowX: 'hidden', scrollbarWidth: 'none' }}>
         <SidebarFixed sidebarOpen={sidebarOpen} />
         {/* Render StudentUtility only when sidebar is collapsed on desktop */}
         {!sidebarOpen && (
@@ -55,7 +55,7 @@ export default function Home() {
             <StudentUtility />
           </div>
         )}
-  <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'} w-full`} style={{ maxWidth: '100vw', overflowX: 'hidden' }}>
+  <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'} w-full`} style={{ maxWidth: '100vw', overflowX: 'hidden', scrollbarWidth: 'none' }}>
           <div className="p-4 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-[#0bb6bc] dark:text-[#0bb6bc]">Welcome to PowerHub</h2>
             {/* Removed the statement as requested */}
@@ -63,10 +63,10 @@ export default function Home() {
             {/* Category Filters */}
             <Filters />
           </div>
-          <main className="flex-1 p-2 sm:p-4 pb-0 overflow-y-auto w-full" style={{ maxWidth: '100vw', overflowX: 'hidden' }}>
+          <main className="flex-1 p-2 sm:p-4 pb-0 overflow-y-auto w-full" style={{ maxWidth: '100vw', overflowX: 'hidden', scrollbarWidth: 'none' }}>
             <div
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 w-full"
-              style={{ margin: 0, maxWidth: '100vw', overflowX: 'hidden' }}
+              style={{ margin: 0, maxWidth: '100vw', overflowX: 'hidden', scrollbarWidth: 'none' }}
             >
               {loading ? (
                 Array.from({ length: 6 }).map((_, i) => (
