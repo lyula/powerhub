@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import StudentUtility from '../components/StudentUtility';
 import BottomTabs from '../components/BottomTabs';
 import { fetchThumbnails } from '../utils/fetchThumbnails';
 
@@ -45,9 +46,15 @@ export default function Home() {
   return (
   <div className="min-h-screen bg-gray-100 dark:bg-[#111111]">
       <HeaderFixed onToggleSidebar={handleToggleSidebar} />
-      <div className="flex" style={{ height: 'calc(100vh - 56px)' }}>
+      <div className="flex flex-row" style={{ height: 'calc(100vh - 56px)' }}>
         <SidebarFixed sidebarOpen={sidebarOpen} />
-        <div className="flex-1 flex flex-col ml-0 md:ml-64">
+        {/* Render StudentUtility only when sidebar is collapsed on desktop */}
+        {!sidebarOpen && (
+          <div className="md:ml-20">
+            <StudentUtility />
+          </div>
+        )}
+        <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'}`}>
           <div className="p-4 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-[#0bb6bc] dark:text-[#0bb6bc]">Welcome to PowerHub</h2>
             <p className="mb-6 text-gray-700 dark:text-gray-300">Learn, share, and grow with your fellow PLP students. Explore videos by specialization, trending topics, and more!</p>
