@@ -62,23 +62,29 @@ export default function Home() {
             {/* Category Filters */}
             <div className="mb-8">
               <div className="font-semibold text-base mb-2 text-gray-800 dark:text-gray-200">Filters</div>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  'AI',
-                  'Mobile apps',
-                  'MERN',
-                  'Python',
-                  'Javascript',
-                  'HTML & CSS',
-                  'Entreprenuership',
-                  'Success Stories',
-                  'PLP Graduation',
-                  'Hackathons',
-                ].map((cat) => (
-                  <button key={cat} className="px-3 py-1 rounded-full bg-[#0bb6bc] text-white text-xs font-medium hover:bg-[#c42152] transition">
-                    {cat}
-                  </button>
-                ))}
+              <div className="w-full max-w-full md:max-w-4xl mx-auto overflow-x-hidden" style={{ position: 'relative' }}>
+                <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', overflowY: 'hidden', maxWidth: '100%', scrollbarWidth: 'none', width: '100%' }}>
+                  {[
+                    'AI',
+                    'Mobile apps',
+                    'MERN',
+                    'Python',
+                    'Javascript',
+                    'HTML & CSS',
+                    'Entreprenuership',
+                    'Success Stories',
+                    'PLP Graduation',
+                    'Hackathons',
+                  ].map((cat) => (
+                    <button
+                      key={cat}
+                      className="px-3 py-1 rounded-full text-sm font-medium transition
+                        bg-[#0bb6bc] text-white hover:bg-[#c42152] dark:bg-[#222] dark:text-gray-200 dark:hover:bg-[#333]"
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
