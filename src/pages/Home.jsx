@@ -22,7 +22,6 @@ export default function Home() {
     async function loadVideos() {
       try {
         const thumbs = await fetchThumbnails(6);
-        // Dummy data for each video card
         const authors = [
           { name: 'Alex Kim', profile: 'https://randomuser.me/api/portraits/men/32.jpg' },
           { name: 'Priya Singh', profile: 'https://randomuser.me/api/portraits/women/44.jpg' },
@@ -82,21 +81,36 @@ export default function Home() {
               style={{ margin: 0, maxWidth: '100vw', overflowX: 'hidden', scrollbarWidth: 'none' }}
             >
               {loading ? (
-                Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden animate-pulse flex flex-col min-w-0 w-full"
-                    style={{ maxWidth: '100%', minWidth: 0 }}
-                  >
-                    <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                      <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-base">Loading...</span>
+                  Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="bg-gray-100 dark:bg-[#111111] shadow-md overflow-hidden flex flex-col min-w-0 w-full animate-pulse"
+                      style={{ maxWidth: '100%', minWidth: 0 }}
+                    >
+                      <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700" style={{ borderRadius: 0, margin: 0, padding: 0 }} />
+                      <div className="block sm:hidden" style={{ height: '12px' }} />
+                      <div className="p-0 sm:p-3 flex-1 flex flex-col justify-between">
+                        <div className="flex items-start gap-2 sm:gap-3 mb-1">
+                          <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex-shrink-0" />
+                          <div className="flex flex-col min-w-0">
+                            <div className="h-4 sm:h-5 bg-gray-300 dark:bg-gray-700 rounded w-32 sm:w-40 mb-1" />
+                            <div className="hidden md:block h-3 bg-gray-300 dark:bg-gray-700 rounded w-20" />
+                          </div>
+                        </div>
+                        <div
+                          className="flex flex-row items-center gap-1 md:gap-3 pl-7 sm:pl-14 text-xs text-gray-600 dark:text-gray-400 truncate"
+                          style={{ marginBottom: '0' }}
+                        >
+                          <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-10" />
+                          <span>•</span>
+                          <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-10" />
+                          <span>•</span>
+                          <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-10" />
+                        </div>
+                        <div style={{ height: '0.7em' }} />
+                      </div>
                     </div>
-                    <div className="p-2 sm:p-3 flex-1 flex flex-col justify-between">
-                      <h3 className="font-semibold text-xs sm:text-base md:text-lg text-[#c42152] dark:text-[#c42152] truncate">Video Title {i+1}</h3>
-                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Specialization • Student Name</p>
-                    </div>
-                  </div>
-                ))
+                  ))
               ) : (
                 videos.map((video, i) => (
                   <div
@@ -104,10 +118,17 @@ export default function Home() {
                     className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden flex flex-col min-w-0 w-full"
                     style={{ maxWidth: '100%', minWidth: 0 }}
                   >
-                    <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                      <img src={video.thumbnail} alt={video.title} className="object-cover w-full h-full" style={{ borderRadius: '0.5rem 0.5rem 0 0' }} />
+                    <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700 flex items-center justify-center" style={{ borderRadius: '0', margin: 0, padding: 0 }}>
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="object-cover w-full h-full rounded-none"
+                        style={{ borderRadius: 0, margin: 0, padding: 0, display: 'block' }}
+                      />
                     </div>
-                    <div className="p-2 sm:p-3 flex-1 flex flex-col justify-between">
+                    {/* Add spacing below thumbnail for mobile */}
+                    <div className="block sm:hidden" style={{ height: '12px' }} />
+                    <div className="p-0 sm:p-3 flex-1 flex flex-col justify-between">
                       <div className="flex items-start gap-2 sm:gap-3 mb-1">
                         <img src={video.profile} alt={video.author} className="w-7 h-7 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 dark:border-gray-700 flex-shrink-0" />
                         <div className="flex flex-col min-w-0">
@@ -119,7 +140,7 @@ export default function Home() {
                             {video.title}
                           </h3>
                           {/* Author above details on desktop/large screens, hidden on mobile/tablet */}
-                          <span className="hidden md:block text-xs font-medium text-gray-600 dark:text-gray-400 mt-1 truncate">{video.author}</span>
+                          <span className="hidden md:block text-xs font-medium text-gray-600 dark:text-gray-400 mt-0 truncate">{video.author}</span>
                         </div>
                       </div>
                       {/* Responsive row for views, author, and time */}
