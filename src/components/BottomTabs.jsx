@@ -15,7 +15,7 @@ export default function BottomTabs() {
       {items.map((item) => (
         <button key={item.label} className="flex flex-col items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-[#0bb6bc] dark:hover:text-[#0bb6bc] transition">
           <span className="w-6 h-6">{item.icon}</span>
-          <span className="text-xs">{item.label}</span>
+          <span className="text-xs sm:text-sm md:text-base">{item.label}</span>
         </button>
       ))}
     </nav>
