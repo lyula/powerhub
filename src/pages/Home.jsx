@@ -43,7 +43,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#181818]">
+  <div className="min-h-screen bg-gray-100 dark:bg-[#111111]">
       <HeaderFixed onToggleSidebar={handleToggleSidebar} />
       <div className="flex" style={{ height: 'calc(100vh - 56px)' }}>
         <SidebarFixed sidebarOpen={sidebarOpen} />
@@ -56,7 +56,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scrollbar-hide">
               {loading ? (
                 Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="bg-gray-100 dark:bg-[#212121] rounded-lg shadow-md overflow-hidden animate-pulse">
+                  <div key={i} className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden animate-pulse">
                     <div className="h-40 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
                       <span className="text-gray-500 dark:text-gray-400">Loading...</span>
                     </div>
@@ -68,7 +68,7 @@ export default function Home() {
                 ))
               ) : (
                 videos.map((video, i) => (
-                  <div key={i} className="bg-gray-100 dark:bg-[#212121] rounded-lg shadow-md overflow-hidden">
+                  <div key={i} className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden">
                     <div className="h-40 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
                       <img src={video.thumbnail} alt={video.title} className="object-cover w-full h-full" />
                     </div>

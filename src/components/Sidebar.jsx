@@ -12,7 +12,7 @@ const items = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col w-64 min-h-screen bg-gray-100 dark:bg-[#212121] border-r border-gray-200 dark:border-gray-800 py-6 px-4">
+  <aside className="hidden md:flex flex-col w-64 min-h-screen bg-gray-100 dark:bg-[#111111] border-r border-gray-200 dark:border-gray-900 py-6 px-4">
       <div className="mb-8 text-2xl font-bold text-[#0bb6bc] dark:text-[#0bb6bc]">PowerHub</div>
       <nav className="flex flex-col gap-4">
         {items.map((item) => (
