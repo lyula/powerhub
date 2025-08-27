@@ -58,6 +58,29 @@ export default function Home() {
           <div className="p-4 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-[#0bb6bc] dark:text-[#0bb6bc]">Welcome to PowerHub</h2>
             <p className="mb-6 text-gray-700 dark:text-gray-300">Learn, share, and grow with your fellow PLP students. Explore videos by specialization, trending topics, and more!</p>
+
+            {/* Category Filters */}
+            <div className="mb-8">
+              <div className="font-semibold text-base mb-2 text-gray-800 dark:text-gray-200">Filters</div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'AI',
+                  'Mobile apps',
+                  'MERN',
+                  'Python',
+                  'Javascript',
+                  'HTML & CSS',
+                  'Entreprenuership',
+                  'Success Stories',
+                  'PLP Graduation',
+                  'Hackathons',
+                ].map((cat) => (
+                  <button key={cat} className="px-3 py-1 rounded-full bg-[#0bb6bc] text-white text-xs font-medium hover:bg-[#c42152] transition">
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <main className="flex-1 p-4 md:p-8 pb-0 overflow-y-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scrollbar-hide">
