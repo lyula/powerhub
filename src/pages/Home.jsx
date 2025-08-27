@@ -118,11 +118,21 @@ export default function Home() {
                           >
                             {video.title}
                           </h3>
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1 truncate">{video.author}</span>
+                          {/* Author above details on desktop/large screens, hidden on mobile/tablet */}
+                          <span className="hidden md:block text-xs font-medium text-gray-600 dark:text-gray-400 mt-1 truncate">{video.author}</span>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 pl-7 sm:pl-14 truncate" style={{ marginBottom: '0' }}>
-                        {formatViews(video.views)} views • {video.posted}
+                      {/* Responsive row for views, author, and time */}
+                      <div
+                        className="flex flex-row items-center gap-1 md:gap-3 pl-7 sm:pl-14 text-xs text-gray-600 dark:text-gray-400 truncate"
+                        style={{ marginBottom: '0' }}
+                      >
+                        {/* On desktop/large screens, hide author in details row */}
+                        <span className="md:hidden">{video.author}</span>
+                        <span className="md:hidden">•</span>
+                        <span>{formatViews(video.views)} views</span>
+                        <span>•</span>
+                        <span>{video.posted}</span>
                       </div>
                       {/* Add gap at the end to compensate for long titles in the row */}
                       <div style={{ height: '0.7em' }} />
