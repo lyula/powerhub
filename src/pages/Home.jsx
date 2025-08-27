@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import StudentUtility from '../components/StudentUtility';
 import BottomTabs from '../components/BottomTabs';
+import Filters from '../components/Filters';
 import { fetchThumbnails } from '../utils/fetchThumbnails';
 
 export default function Home() {
@@ -44,9 +45,9 @@ export default function Home() {
   }, []);
 
   return (
-  <div className="min-h-screen bg-gray-100 dark:bg-[#111111]">
+  <div className="min-h-screen bg-gray-100 dark:bg-[#111111] w-full" style={{ overflowX: 'hidden' }}>
       <HeaderFixed onToggleSidebar={handleToggleSidebar} />
-      <div className="flex flex-row" style={{ height: 'calc(100vh - 56px)' }}>
+  <div className="flex flex-row w-full" style={{ height: 'calc(100vh - 56px)', maxWidth: '100vw', overflowX: 'hidden' }}>
         <SidebarFixed sidebarOpen={sidebarOpen} />
         {/* Render StudentUtility only when sidebar is collapsed on desktop */}
         {!sidebarOpen && (
@@ -54,69 +55,54 @@ export default function Home() {
             <StudentUtility />
           </div>
         )}
-        <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'}`}>
+  <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'} w-full`} style={{ maxWidth: '100vw', overflowX: 'hidden' }}>
           <div className="p-4 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-[#0bb6bc] dark:text-[#0bb6bc]">Welcome to PowerHub</h2>
             {/* Removed the statement as requested */}
 
             {/* Category Filters */}
-            <div className="mb-0">
-              {/* Removed the word 'Filters' as requested */}
-              <div className="w-full max-w-full md:max-w-4xl mx-auto overflow-x-hidden" style={{ position: 'relative' }}>
-                <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', overflowY: 'hidden', maxWidth: '100%', scrollbarWidth: 'none', width: '100%' }}>
-                  {[
-                    'AI',
-                    'Mobile apps',
-                    'MERN',
-                    'Python',
-                    'Javascript',
-                    'HTML & CSS',
-                    'Entreprenuership',
-                    'Success Stories',
-                    'PLP Graduation',
-                    'Hackathons',
-                  ].map((cat) => (
-                    <button
-                      key={cat}
-                      className="px-3 py-1 rounded-full text-sm font-medium transition
-                        bg-[#0bb6bc] text-white hover:bg-[#c42152] dark:bg-[#222] dark:text-gray-200 dark:hover:bg-[#333]"
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <Filters />
           </div>
-          <main className="flex-1 p-0 md:p-4 pb-0 overflow-y-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scrollbar-hide">
+          <main className="flex-1 p-2 sm:p-4 pb-0 overflow-y-auto w-full" style={{ maxWidth: '100vw', overflowX: 'hidden' }}>
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 w-full"
+              style={{ margin: 0, maxWidth: '100vw', overflowX: 'hidden' }}
+            >
               {loading ? (
                 Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden animate-pulse">
-                    <div className="h-40 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                      <span className="text-gray-500 dark:text-gray-400">Loading...</span>
+                  <div
+                    key={i}
+                    className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden animate-pulse flex flex-col min-w-0 w-full"
+                    style={{ maxWidth: '100%', minWidth: 0 }}
+                  >
+                    <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
+                      <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-base">Loading...</span>
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg text-[#c42152] dark:text-[#c42152]">Video Title {i+1}</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Specialization • Student Name</p>
+                    <div className="p-2 sm:p-3 flex-1 flex flex-col justify-between">
+                      <h3 className="font-semibold text-xs sm:text-base md:text-lg text-[#c42152] dark:text-[#c42152] truncate">Video Title {i+1}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Specialization • Student Name</p>
                     </div>
                   </div>
                 ))
               ) : (
                 videos.map((video, i) => (
-                  <div key={i} className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden">
-                    <div className="h-40 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                      <img src={video.thumbnail} alt={video.title} className="object-cover w-full h-full" />
+                  <div
+                    key={i}
+                    className="bg-gray-100 dark:bg-[#111111] rounded-lg shadow-md overflow-hidden flex flex-col min-w-0 w-full"
+                    style={{ maxWidth: '100%', minWidth: 0 }}
+                  >
+                    <div className="w-full aspect-video bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
+                      <img src={video.thumbnail} alt={video.title} className="object-cover w-full h-full" style={{ borderRadius: '0.5rem 0.5rem 0 0' }} />
                     </div>
-                    <div className="p-4">
-                      <div className="flex items-start gap-3 mb-1">
-                        <img src={video.profile} alt={video.author} className="w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-700 flex-shrink-0" />
-                        <div className="flex flex-col">
-                          <h3 className="font-bold text-xl text-white truncate max-w-[220px]" title={video.title}>{video.title}</h3>
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">{video.author}</span>
+                    <div className="p-2 sm:p-3 flex-1 flex flex-col justify-between">
+                      <div className="flex items-start gap-2 sm:gap-3 mb-1">
+                        <img src={video.profile} alt={video.author} className="w-7 h-7 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 dark:border-gray-700 flex-shrink-0" />
+                        <div className="flex flex-col min-w-0">
+                          <h3 className="font-bold text-xs sm:text-base md:text-lg text-white truncate" title={video.title}>{video.title}</h3>
+                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1 truncate">{video.author}</span>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mb-1 pl-14">
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mb-1 pl-7 sm:pl-14 truncate">
                         {video.views.toLocaleString()} views • {video.posted}
                       </div>
                     </div>
