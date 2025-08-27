@@ -57,11 +57,11 @@ export default function Home() {
         <div className={`flex-1 flex flex-col ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-0'}`}>
           <div className="p-4 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-[#0bb6bc] dark:text-[#0bb6bc]">Welcome to PowerHub</h2>
-            <p className="mb-6 text-gray-700 dark:text-gray-300">Learn, share, and grow with your fellow PLP students. Explore videos by specialization, trending topics, and more!</p>
+            {/* Removed the statement as requested */}
 
             {/* Category Filters */}
-            <div className="mb-8">
-              <div className="font-semibold text-base mb-2 text-gray-800 dark:text-gray-200">Filters</div>
+            <div className="mb-0">
+              {/* Removed the word 'Filters' as requested */}
               <div className="w-full max-w-full md:max-w-4xl mx-auto overflow-x-hidden" style={{ position: 'relative' }}>
                 <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', overflowY: 'hidden', maxWidth: '100%', scrollbarWidth: 'none', width: '100%' }}>
                   {[
@@ -88,7 +88,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <main className="flex-1 p-4 md:p-8 pb-0 overflow-y-auto">
+          <main className="flex-1 p-0 md:p-4 pb-0 overflow-y-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scrollbar-hide">
               {loading ? (
                 Array.from({ length: 6 }).map((_, i) => (
