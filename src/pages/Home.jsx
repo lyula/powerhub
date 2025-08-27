@@ -5,6 +5,11 @@ import StudentUtility from '../components/StudentUtility';
 import BottomTabs from '../components/BottomTabs';
 import Filters from '../components/Filters';
 import { fetchThumbnails } from '../utils/fetchThumbnails';
+function formatViews(views) {
+  if (views >= 1000000) return (views / 1000000).toFixed(views % 1000000 === 0 ? 0 : 1) + 'm';
+  if (views >= 1000) return (views / 1000).toFixed(views % 1000 === 0 ? 0 : 1) + 'k';
+  return views;
+}
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,9 +31,17 @@ export default function Home() {
           { name: 'Chen Wei', profile: 'https://randomuser.me/api/portraits/men/21.jpg' },
           { name: 'Fatima Zahra', profile: 'https://randomuser.me/api/portraits/women/12.jpg' },
         ];
+        const codingTitles = [
+          'React Hooks Deep Dive',
+          'Building REST APIs with Node.js',
+          'Mastering JavaScript ES6+',
+          'Responsive Web Design with CSS',
+          'Python for Data Science',
+          'Debugging MERN Stack Apps',
+        ];
         const videos = thumbs.map((thumb, i) => ({
           thumbnail: thumb,
-          title: `Sample Video ${i + 1}`,
+          title: codingTitles[i % codingTitles.length],
           views: Math.floor(Math.random() * 10000) + 100,
           posted: `${Math.floor(Math.random() * 12) + 1} days ago`,
           author: authors[i % authors.length].name,
@@ -98,13 +111,21 @@ export default function Home() {
                       <div className="flex items-start gap-2 sm:gap-3 mb-1">
                         <img src={video.profile} alt={video.author} className="w-7 h-7 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 dark:border-gray-700 flex-shrink-0" />
                         <div className="flex flex-col min-w-0">
-                          <h3 className="font-bold text-xs sm:text-base md:text-lg text-white truncate" title={video.title}>{video.title}</h3>
+                          <h3
+                            className="font-bold text-xs sm:text-base md:text-lg text-white line-clamp-2"
+                            title={video.title}
+                            style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'normal', minHeight: '1.2em' }}
+                          >
+                            {video.title}
+                          </h3>
                           <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1 truncate">{video.author}</span>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mb-1 pl-7 sm:pl-14 truncate">
-                        {video.views.toLocaleString()} views • {video.posted}
+                      <div className="text-xs text-gray-600 dark:text-gray-400 pl-7 sm:pl-14 truncate" style={{ marginBottom: '0' }}>
+                        {formatViews(video.views)} views • {video.posted}
                       </div>
+                      {/* Add gap at the end to compensate for long titles in the row */}
+                      <div style={{ height: '0.7em' }} />
                     </div>
                   </div>
                 ))
